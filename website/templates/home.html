@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if user.is_authenticated %}  
+
+  <h1>Events</h1>
+
+
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Event Time</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% if events %}
+    {% for event in events %} 
+        <tr>
+          <td><a href="{% url 'event' event.id %}">{{ event.id }}</a></td>
+          <td>{{ event.title }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.event_time }}</td>
+        </tr>   
+    {% endfor %}      
+    </tbody>
+  </table>      
+        
+    
+
+  
+
+  {% endif %}
+
+  
+  {% else %}
+  
+  <div class="col-md-6 offset-md-3">
+  <h1>Login</h1>
+  <br/>
+
+  <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+          
+          <div class="mb-3">
+            
+            <input type="text" class="form-control" name="username", placeholder="Username" required>
+          
+          </div><br/>
+          
+          <div class="mb-3">
+            
+            <input type="password" class="form-control" name="password", placeholder="Password" required>
+          
+          </div>
+          <br/>
+          
+          <button type="submit" class="btn btn-secondary">Login
+
+          </button>
+        
+
+
+  </form>
+
+
+{% endif %}
+
+
+{% endblock %}

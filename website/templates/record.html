@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="card">
+  <div class="card-header">
+   <strong>{{ individual_event.title }}</strong> 
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+     <strong>ID:</strong> {{ individual_event.id }} </p>
+
+    <p class="card-text">
+ 
+     <strong>Description:</strong> {{ individual_event.description }} </p>  
+     
+    <p class="card-text"> 
+     <strong>Event Time:</strong> {{ individual_event.event_time }} </p>
+    
+    
+    
+  </div>
+</div>
+
+<br/><br>
+<a 
+  href="{% url 'home' %}" class="btn btn-secondary">Back
+</a>
+
+<a 
+  href="{% url 'delete_event' individual_event.id %}" class="btn btn-danger">Delete
+</a>
+
+<a 
+  href="{% url 'update_record' individual_event.id %}" class="btn btn-secondary">Update Record
+</a>
+         
+{% endblock %}
